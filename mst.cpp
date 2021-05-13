@@ -5,12 +5,13 @@
 #include <cstring>
 
 #define _CRT_SECURE_NO_WARNINGS
-#define X_AND_Y 2
+#define TEST_CASES 10
 #define NUM_OF_COORDINATES 20
+#define X_AND_Y 2
 
 int main() {
 	// Initialize variables
-    int coordinates[NUM_OF_COORDINATES][X_AND_Y] = { 0 };
+    int coordinates[TEST_CASES][NUM_OF_COORDINATES][X_AND_Y] = { 0 };
     int numOfTests = 0;
     int numOfVerts = 0;
     int value = 0;
@@ -37,16 +38,15 @@ int main() {
                     stream >> value;
                     if(!stream)
                         break;
-                    coordinates[j][coor] = value;
+                    coordinates[i][j][coor] = value;
                     coor = !coor;
                 }
-                std::cout << "Point created: " << coordinates[j][0] << " " << coordinates[j][1] << std::endl;
+                std::cout << "Point created: " << coordinates[i][j][0] << " " << coordinates[i][j][1] << std::endl;
             }
             std::cout << std::endl;
         }
 	}
 	else
 		std::cout << "Could not load the file";
-
 	return 0;
 }
