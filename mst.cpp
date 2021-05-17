@@ -74,12 +74,10 @@ int main() {
         // We read the first line of the txt file to find out the number of tests there are
         std::getline(file,str);
         numOfTests = std::stoi(str);
-        std::cout << "The number of tests is: " << numOfTests << std::endl << std::endl;
         // This loop reads each tests
         for (int i = 0; i < numOfTests; i++) {
             std::getline(file,str);
             numOfVerts[i] = std::stoi(str);
-            std::cout << "The number of vertices is: " << numOfVerts[i] << std::endl;
             // This loops the number of times according to the amount of vertices, and reads the coordinates afterwards
             for (int j = 0; j < numOfVerts[i]; j++) {
                 std::getline(file,str);
@@ -91,9 +89,7 @@ int main() {
                     coordinates[i][j][coor] = value;
                     coor = !coor;
                 }
-                std::cout << "Point created: " << coordinates[i][j][0] << " " << coordinates[i][j][1] << std::endl;
             }
-            std::cout << std::endl;
         }
 	}
 	else
@@ -103,18 +99,16 @@ int main() {
     int graph[NUM_OF_COORDINATES][NUM_OF_COORDINATES] = { 0 };
 
     for (int i = 0; i < numOfTests; i++) {
-        std:: cout << "Graph creation Test: " << i + 1 << std::endl;
+        std:: cout << "Test case " << i + 1 << ": ";
         // Reset the graph array to all zeros
         std::memset(graph, 0, sizeof graph);
         for (int j = 0; j < numOfVerts[i]; j++) {
             for (int k = 0; k < numOfVerts[i]; k++) {
                 // Calculate the distance between all points and store them into graphs
                 graph[j][k] = distance(coordinates[i][j][0],coordinates[i][j][1], coordinates[i][k][0], coordinates[i][k][1]);
-                std::cout << "Graph point " << j << " " << k << " = " << graph[j][k] << std::endl;
             }
         } 
-        std::cout << "The total weight is: " << prims(graph) << std::endl;
-        std::cout << std::endl;
+        std::cout << "MST weight " << prims(graph) << std::endl << std::endl;
     }
 	return 0;
 }
